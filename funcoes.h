@@ -18,6 +18,7 @@ void Sorteio(){
     //declaracao de variaveis
     Jogo jogo = {0, ""};
     int quantidade = 0;
+    int tempo = 0;
 
     //abrir arquivo
     fstream arq("jogos.dat", ios::in);
@@ -35,22 +36,39 @@ void Sorteio(){
 
     arq.close();
 
-    //sortear um jogo
-    int sorteado = rand() % quantidade + 1;
+    while(tempo <= 1000){
 
-    //abrir arquivo
-    fstream arq2("jogos.dat", ios::in);
-    
-        //ler o jogo sorteado
-        while(arq2.read((char*)&jogo, sizeof(Jogo))){
-            if(jogo.id == sorteado){
-                cout << "Jogo sorteado: " << jogo.nome << endl;
+        //limpar tela
+        system("cls");
+
+        //sortear um jogo
+        int sorteado = rand() % quantidade + 1;
+
+        //abrir arquivo
+        fstream arq2("jogos.dat", ios::in);
+        
+            //ler o jogo sorteado
+            while(arq2.read((char*)&jogo, sizeof(Jogo))){
+                if(jogo.id == sorteado){
+                    if(tempo < 1000){
+                        cout << "Sorteando: " << jogo.nome << "..." << endl;
+                    }else{
+                        cout << "Jogo sorteado: " << jogo.nome << endl;
+                    }
+                    break;
+                }
             }
-        }
 
-    arq2.close();
+        arq2.close();
+
+        //esperar o tempo
+        Sleep(tempo);
+
+        tempo += 100;
+    }
 
 }
+//----------------------------------------------
 //----------------------------------------------
 //função de cadastro
 void Cadastro(){

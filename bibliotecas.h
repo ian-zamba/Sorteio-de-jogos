@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <iomanip>
 #include <fstream> //arquivo
+#include <windows.h>
 using namespace std;
 
 struct Jogo{
